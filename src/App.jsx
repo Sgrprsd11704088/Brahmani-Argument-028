@@ -1,28 +1,15 @@
-import { useState } from "react";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+import AlbumDetails from "./pages/AlbumDetails";
+import Auth from "./pages/Auth";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [users, setUsers] = useState([]);
-  const handleSetUser = (user) => {
-    setCurrentUser(user);
-  };
-
   return (
-    <div>
-      {currentUser ? (
-        <div>
-          <h2>Welcome, {currentUser.username}!</h2>
-          <button onClick={() => setCurrentUser(null)}>Logout</button>
-        </div>
-      ) : (
-        <div>
-          <Login setUser={handleSetUser} />
-          <SignUp setUsers={setUsers} />
-        </div>
-      )}
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/albums/:id" element={<AlbumDetails />} />
+      <Route path="/auth" element={<Auth />} />
+    </Routes>
   );
 };
 

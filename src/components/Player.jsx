@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BiRepeat } from "react-icons/bi";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { HiSpeakerWave } from "react-icons/hi2";
@@ -6,9 +6,13 @@ import { IoMdSkipBackward, IoMdSkipForward } from "react-icons/io";
 import { LuHardDriveDownload } from "react-icons/lu";
 import { PiShuffleBold } from "react-icons/pi";
 import VolumeController from "./VolumeController";
+import MusicContext from "../context/MusicContext";
 
 const Player = () => {
   const [isVoulumeVisible, setIsVolumeVisible] = useState(false);
+
+  const { currentSong, playMusic, isPlaying, prevSong, nextSong } =
+    useContext(MusicContext);
 
   return (
     <div className="fixed bottom-0 right-0 left-0 bg-[#f5f5f5ff] flex flex-col">
@@ -27,23 +31,58 @@ const Player = () => {
         {/* Song Details  */}
         <div className="flex justify-start items-center gap-3 lg:w-[30vw]">
           <img
-            src="https://c.saavncdn.com/256/Shree-Hanuman-Chalisa-Hanuman-Ashtak-Hindi-1992-20230904173628-500x500.jpg"
+            src={currentSong?.image}
             alt=""
             width={55}
             className="rounded-lg"
           />
           <div className="hidden lg:block">
-            <span>Lorem, ipsum.</span>
-            <p className="text-xs text-gray-500">Lorem ipsum dolor sit amet.</p>
+            <span>{currentSong?.name}</span>
+            <p className="text-xs text-gray-500">
+              {currentSong?.primaryArtists}
+            </p>
           </div>
         </div>
 
         {/* Song Controls  */}
         <div className="flex text-2xl lg:text-3xl gap-4 lg:gap-6 lg:w-[40vw] justify-center">
           <BiRepeat className="text-gray-400 cursor-pointer" />
-          <IoMdSkipBackward className="text-gray-700 hover:text-gray-500 cursor-pointer" />
-          <FaPlay className="text-gray-700 hover:text-gray-500 cursor-pointer" />
-          <IoMdSkipForward className="text-gray-700 hover:text-gray-500 cursor-pointer" />
+          <IoMdSkipBackward
+            onClick={prevSong}
+            className="text-gray-700 hover:text-gray-500 cursor-pointer"
+          />
+          {isPlaying ? (
+            <FaPause
+              className="text-gray-700 hover:text-gray-500 cursor-pointer"
+              onClick={() =>
+                playMusic(
+                  currentSong.audio,
+                  currentSong.name,
+                  currentSong.duration,
+                  currentSong.image,
+                  currentSong.id
+                )
+              }
+            />
+          ) : (
+            <FaPlay
+              className="text-gray-700 hover:text-gray-500 cursor-pointer"
+              onClick={() =>
+                playMusic(
+                  currentSong.audio,
+                  currentSong.name,
+                  currentSong.duration,
+                  currentSong.image,
+                  currentSong.id
+                )
+              }
+            />
+          )}
+
+          <IoMdSkipForward
+            onClick={nextSong}
+            className="text-gray-700 hover:text-gray-500 cursor-pointer"
+          />
           <PiShuffleBold className="text-gray-400 cursor-pointer" />
         </div>
 

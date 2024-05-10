@@ -7,7 +7,7 @@ const Navbar = () => {
       {/* 1st div  */}
       <div className="flex flex-col lg:flex-row justify-between items-center mx-auto lg:mx-0">
         <div className="flex justify-between items-center gap-2 mr-4">
-          <img src="../../public/4.png" alt="logo" width={40} />
+          <img src="/public/4.png" alt="logo" width={40} />
           <Link to={"/"} className="font-extrabold text-lg">
             Harmony
           </Link>

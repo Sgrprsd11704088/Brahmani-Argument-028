@@ -7,9 +7,9 @@ const MainSection = () => {
   const [trending, setTrending] = useState([]);
 
   const getHomePageData = async () => {
-    const res = await axios.get("http://127.0.0.1:3000/modules");
-    console.log(res);
-    const { data } = res.data;
+    const res = await axios.get("http://localhost:3001/data");
+    const { data } = res;
+    // console.log(res.data);
 
     setAlbums(data.albums.data);
     setTrending(data.trending.data);

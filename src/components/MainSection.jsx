@@ -8,6 +8,7 @@ const MainSection = () => {
 
   const getHomePageData = async () => {
     const res = await axios.get("http://127.0.0.1:3000/modules");
+    console.log(res);
     const { data } = res.data;
 
     setAlbums(data.albums.data);

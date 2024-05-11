@@ -68,12 +68,12 @@ const Navbar = () => {
         </div> */}
         <div className="flex text-[15px] gap-5 text-gray-600 font-semibold">
           <li className="list-none">
-            <Link to={"/auth"} className="font-extrabold text-lg">
+            <Link to={"/login"} className="font-extrabold text-lg">
               Log In
             </Link>
           </li>
           <li className="list-none">
-            <Link to={"/auth"} className="font-extrabold text-lg">
+            <Link to={"/signup"} className="font-extrabold text-lg">
               Sign Up
             </Link>
           </li>

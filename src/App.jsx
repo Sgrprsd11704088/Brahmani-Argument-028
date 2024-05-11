@@ -1,9 +1,11 @@
 import AlbumDetails from "./pages/AlbumDetails";
-import Auth from "./pages/Auth";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MusicContext from "./context/MusicContext";
 import { useState } from "react";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const [songs, setSongs] = useState([]);
@@ -40,8 +42,6 @@ const App = () => {
       await newAudio.play();
     }
   };
-
-  console.log(songs);
 
   const nextSong = () => {
     if (currentSong) {
@@ -83,13 +83,15 @@ const App = () => {
         prevSong,
         nextSong,
         searchedSongs,
-        setSearchedSongs
+        setSearchedSongs,
       }}
     >
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/albums/:id" element={<AlbumDetails />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </MusicContext.Provider>
   );

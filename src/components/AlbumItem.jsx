@@ -7,11 +7,7 @@ const AlbumItem = ({ name, artists, id, image }) => {
       className="w-[160px] max-h-[220px] overflow-y-clip flex flex-col justify-center items-center gap-3 rounded-lg"
     >
       <img
-        src={
-          image[2]?.link
-            ? image[2]?.link
-            : "https://c.saavncdn.com/870/Radical-Optimism-English-2024-20240503014647-500x500.jpg"
-        }
+        src={Array.isArray(image) ? image[2]?.link : image}
         alt=""
         className="rounded-lg"
       />

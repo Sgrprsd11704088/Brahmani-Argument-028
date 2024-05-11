@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { BiRepeat } from "react-icons/bi";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { HiSpeakerWave } from "react-icons/hi2";
@@ -9,10 +9,62 @@ import VolumeController from "./VolumeController";
 import MusicContext from "../context/MusicContext";
 
 const Player = () => {
-  const [isVoulumeVisible, setIsVolumeVisible] = useState(false);
+  const [isVolumeVisible, setIsVolumeVisible] = useState(false);
 
   const { currentSong, playMusic, isPlaying, prevSong, nextSong } =
     useContext(MusicContext);
+
+  const inputRef = useRef();
+
+  useEffect(() => {
+    if (currentSong) {
+      const audioElement = currentSong.audio;
+
+      const handleTimeUpdate = () => {
+        const duration = Number(currentSong.duration);
+        const currentTime = audioElement.currentTime;
+        const newTiming = (currentTime / duration) * 100;
+        inputRef.current.value = newTiming;
+      };
+
+      const handleSongEnd = () => nextSong();
+
+      audioElement.addEventListener("timeupdate", handleTimeUpdate);
+      audioElement.addEventListener("ended", handleSongEnd);
+
+      return () => {
+        audioElement.removeEventListener("timeupdate", handleTimeUpdate);
+        audioElement.removeEventListener("ended", handleSongEnd);
+      };
+    }
+  }, [currentSong, nextSong]);
+
+  const handleProgressChange = (event) => {
+    const newPercentage = parseFloat(event.target.value);
+    const newTime = (newPercentage / 100) * Number(currentSong.duration);
+    if (newTime >= 0) {
+      currentSong.audio.currentTime = newTime;
+    }
+  };
+
+  const handleDownloadSong = async (url) => {
+    try {
+      const res = await fetch(url);
+      console.log(res);
+      const blob = await res.blob();
+
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `${currentSong.name}.mp3`;
+
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+    } catch (error) {
+      console.log("Error fetching or downloading files", error);
+    }
+  };
 
   return (
     <div className="fixed bottom-0 right-0 left-0 bg-[#f5f5f5ff] flex flex-col">
@@ -24,6 +76,8 @@ const Player = () => {
         max={100}
         step="0.1"
         value={0}
+        ref={inputRef}
+        onChange={handleProgressChange}
         className="w-full h-[5px] text-green-400 range"
       />
 
@@ -95,12 +149,13 @@ const Player = () => {
           <LuHardDriveDownload
             className="text-gray-700 hover:text-gray-500 text-2xl lg:text-3xl 
           cursor-pointer lg:mr-2"
+            onClick={() => handleDownloadSong(currentSong.audio.src)}
           />
           <HiSpeakerWave
             className="text-gray-700 hover:text-gray-500 text-2xl lg:text-3xl 
           cursor-pointer hidden lg:block"
           />
-          <VolumeController isVoulumeVisible={isVoulumeVisible} />
+          <VolumeController isVolumeVisible={isVolumeVisible} />
         </div>
       </div>
     </div>

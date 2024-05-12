@@ -30,10 +30,10 @@ const Navbar = () => {
       setSearchedSongs(data.results);
     }
 
-    console.log(data.results);
+    // console.log(data.results);
   };
 
-  console.log(isLoggedIn, user);
+  // console.log(isLoggedIn, user);
 
   return (
     <nav className="md:flex justify-between items-center py-3 border-none lg:border px-2 fixed top-0 left-0 right-0 bg-[#f5f5f5ff] z-20">

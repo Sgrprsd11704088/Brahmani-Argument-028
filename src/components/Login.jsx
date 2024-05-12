@@ -14,7 +14,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:3001/users");
+      const response = await fetch("https://brahmani-argument-028.onrender.com/users");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }

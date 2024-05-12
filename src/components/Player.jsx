@@ -50,7 +50,7 @@ const Player = () => {
   const handleDownloadSong = async (url) => {
     try {
       const res = await fetch(url);
-      console.log(res);
+      // console.log(res);
       const blob = await res.blob();
 
       const link = document.createElement("a");

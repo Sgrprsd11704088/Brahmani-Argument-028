@@ -37,7 +37,7 @@ const App = () => {
         primaryArtists: artists.primary.map((artist) => artist.name).join(","),
       });
       setIsPlaying(true);
-      console.log(currentSong);
+      // console.log(currentSong);
       await newAudio.play();
     }
   };

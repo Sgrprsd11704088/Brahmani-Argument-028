@@ -20,7 +20,7 @@ const AlbumDetails = () => {
     );
     const { data } = await res.data;
 
-    console.log(data);
+    // console.log(data);
 
     setAlbum(data);
     setImage(getImg(data.image));

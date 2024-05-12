@@ -7,8 +7,10 @@ const MainSection = () => {
   const [trending, setTrending] = useState([]);
 
   const getHomePageData = async () => {
-    const res = await axios.get("http://localhost:3000/data");
-    const { data } = res;
+    const res = await axios.get(
+      "https://brahmani-argument-028.onrender.com/homepage"
+    );
+    const { data } = res.data[0];
     // console.log(res.data);
 
     setAlbums(data.albums.data);

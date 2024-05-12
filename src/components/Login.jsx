@@ -1,11 +1,16 @@
 // Login.js
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { authActions } from "../redux/store/auth-slice";
+import { userActions } from "../redux/store/user-slice";
 
-const Login = ({ setUser }) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     try {
@@ -18,7 +23,11 @@ const Login = ({ setUser }) => {
         (user) => user.username === username && user.password === password
       );
       if (foundUser) {
-        setUser(foundUser);
+        // localStorage.setItem('user', JSON.stringify(foundUser));
+        setError('');
+        dispatch(authActions.login());
+        dispatch(userActions.login(foundUser));
+        navigate('/');
       } else {
         setError("Invalid username or password");
       }

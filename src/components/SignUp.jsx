@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = ({ setUsers }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignUp = async () => {
     try {
@@ -25,6 +26,7 @@ const SignUp = ({ setUsers }) => {
         setUsername("");
         setPassword("");
         setShowAlert(true);
+        navigate("/");
       } else {
         setError("Username and password are required");
       }

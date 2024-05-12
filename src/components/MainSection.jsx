@@ -7,7 +7,7 @@ const MainSection = () => {
   const [trending, setTrending] = useState([]);
 
   const getHomePageData = async () => {
-    const res = await axios.get("http://localhost:3001/data");
+    const res = await axios.get("http://localhost:3000/data");
     const { data } = res;
     // console.log(res.data);
 

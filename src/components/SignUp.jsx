@@ -11,13 +11,16 @@ const SignUp = ({ setUsers }) => {
   const handleSignUp = async () => {
     try {
       if (username && password) {
-        const response = await fetch("http://localhost:3001/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        });
+        const response = await fetch(
+          "https://brahmani-argument-028.onrender.com/users",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          }
+        );
         if (!response.ok) {
           throw new Error("Failed to create account");
         }
@@ -77,9 +80,7 @@ const SignUp = ({ setUsers }) => {
             Sign Up
           </button>
 
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded ml-4"
-          >
+          <button className="bg-green-500 hover:bg-green-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded ml-4">
             <Link to={"/login"}>Login</Link>
           </button>
 
@@ -92,8 +93,6 @@ const SignUp = ({ setUsers }) => {
           )}
         </div>
       </div>
-
-      
     </>
   );
 };

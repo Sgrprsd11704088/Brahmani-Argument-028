@@ -5,7 +5,6 @@ import MusicContext from "./context/MusicContext";
 import { useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-import Navbar from "./components/Navbar";
 
 const App = () => {
   const [songs, setSongs] = useState([]);
@@ -86,7 +85,6 @@ const App = () => {
         setSearchedSongs,
       }}
     >
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/albums/:id" element={<AlbumDetails />} />

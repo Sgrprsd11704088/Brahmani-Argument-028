@@ -7,14 +7,16 @@ Music Streaming Application with Saavn-like Features. My goal for the project is
 Frontend
 
 ## Deplolyed App
-Frontend: (https://brahmani-argument-028.vercel.app/)
-Database: (https://brahmani-argument-028.onrender.com/)
+- Frontend: (https://brahmani-argument-028.vercel.app/)
+- Database: (https://brahmani-argument-028.onrender.com/)
 
 ## Directory Structure
-my-app/
-├─ backend/
-├─ frontend/
-│  ├─ ...
+![image](https://github.com/Sgrprsd11704088/Brahmani-Argument-028/assets/158509626/44b6718d-573d-4415-b8bb-b368dafc2f2e)
+![image](https://github.com/Sgrprsd11704088/Brahmani-Argument-028/assets/158509626/07dfb76f-b59b-47aa-a9c9-a5d6529e6d78)
+![image](https://github.com/Sgrprsd11704088/Brahmani-Argument-028/assets/158509626/ddecf737-0e24-436a-9f1a-83c5886f78f4)
+![image](https://github.com/Sgrprsd11704088/Brahmani-Argument-028/assets/158509626/afbe7782-c310-4d77-a3ff-61f60f5d7501)
+![image](https://github.com/Sgrprsd11704088/Brahmani-Argument-028/assets/158509626/d1a1d002-3822-4866-b60d-74eda0220bf1)
+
 
 ## Video Walkthrough of the project
 [Attach a very short video walkthough of all of the features [ 1 - 3 minutes ]](https://youtu.be/VTXXva2dzgY)
@@ -30,11 +32,7 @@ List out the key features of your application.
 - Music Playback and Streaming
 - Offline Access and Downloads
 
-## design decisions or assumptions
-List your design desissions & assumptions
-
 ## Installation & Getting started
-
 ```bash
 clone the project
 npm install

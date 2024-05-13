@@ -14,7 +14,9 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("https://brahmani-argument-028.onrender.com/users");
+      const response = await fetch(
+        "https://brahmani-argument-028.onrender.com/users"
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -24,10 +26,11 @@ const Login = () => {
       );
       if (foundUser) {
         // localStorage.setItem('user', JSON.stringify(foundUser));
-        setError('');
+        setError("");
         dispatch(authActions.login());
         dispatch(userActions.login(foundUser));
-        navigate('/');
+        navigate(`/${foundUser?.id}`);
+        // navigate('/');
       } else {
         setError("Invalid username or password");
       }
@@ -83,7 +86,6 @@ const Login = () => {
 
           {error && <div>{error}</div>}
         </div>
-        
       </div>
     </>
   );

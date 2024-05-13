@@ -4,7 +4,7 @@ import MusicContext from "../context/MusicContext";
 const VolumeController = ({ isVolumeVisible }) => {
   const { currentSong } = useContext(MusicContext);
 
-  const [volume, setVolume] = useState(50);
+  const [volume, setVolume] = useState(10);
 
   useLayoutEffect(() => {
     if (currentSong) {

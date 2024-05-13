@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MusicContext from "../context/MusicContext";
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,9 +10,11 @@ const Navbar = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(authActions.logout());
+    navigate("/");
   };
 
   const searchSongs = async (e) => {
@@ -80,7 +82,7 @@ const Navbar = () => {
         </div> */}
         {isLoggedIn ? (
           <div className="flex text-[15px] gap-5 text-gray-600 font-semibold">
-            <p >Welcome {user.username}</p>
+            <p>Welcome {user.username}</p>
             <button
               className="bg-green-500 hover:bg-green-700 text-white uppercase text-sm font-semibold px-4 py-2 rounded ml-4"
               onClick={handleLogout}

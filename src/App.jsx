@@ -5,12 +5,14 @@ import MusicContext from "./context/MusicContext";
 import { useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import { useSelector } from "react-redux";
 
 const App = () => {
   const [songs, setSongs] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(null);
   const [searchedSongs, setSearchedSongs] = useState([]);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const playMusic = async (music, name, duration, image, id, artists) => {
     if (currentSong && currentSong.id === id) {
@@ -86,6 +88,7 @@ const App = () => {
       }}
     >
       <Routes>
+        {isLoggedIn && <Route path="/:id" element={<Home />} />}
         <Route path="/" element={<Home />} />
         <Route path="/albums/:id" element={<AlbumDetails />} />
         <Route path="/login" element={<LoginPage />} />

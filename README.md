@@ -53,3 +53,7 @@ List and provide a brief overview of the technologies used in the project.
 - JSX
 - Redux
 - React Router DOM
+- Json-server
+- HTML
+- CSS
+- JavaScript
